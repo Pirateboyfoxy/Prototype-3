@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RepeatBack : MonoBehaviour
+public class RepeatBackground : MonoBehaviour
 {
 
     private Vector3 startPos;
