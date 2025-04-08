@@ -5,7 +5,7 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
 
-    public GameObject obstaclePrefab;
+    public GameObject[] obstaclePrefabs;
     private Vector3 spawnPos = new Vector3(15, 1, 0);
     
     private float startDelay = 2;
@@ -15,7 +15,7 @@ public class SpawnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("SpawnObstacle", startDelay, repeatRate);
+        InvokeRepeating("SpawnRandomObstacle", startDelay, repeatRate);
         playerControllerScript = GameObject.Find("Player").GetComponent<PlayerController>();
     }
 
@@ -25,11 +25,12 @@ public class SpawnManager : MonoBehaviour
         
     }
 
-    void SpawnObstacle()
+    void SpawnRandomObstacle()
     {
         if (playerControllerScript.gameOver == false)
         {
-        Instantiate(obstaclePrefab, spawnPos, obstaclePrefab.transform.rotation);
+        int obstacleIndex = Random.Range(0, obstaclePrefabs.Length);
+        Instantiate(obstaclePrefabs[obstacleIndex], spawnPos, obstaclePrefabs[obstacleIndex].transform.rotation);
         }
     }
 }
